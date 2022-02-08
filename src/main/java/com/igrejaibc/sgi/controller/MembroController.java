@@ -1,6 +1,7 @@
 package com.igrejaibc.sgi.controller;
 
-import com.igrejaibc.sgi.model.Membro;
+import com.igrejaibc.sgi.model.membro.Membro;
+import com.igrejaibc.sgi.response.RequestResponse;
 import com.igrejaibc.sgi.usecase.MembroUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,9 @@ public class MembroController {
     @PostMapping
     public ResponseEntity cadastrarMembro(@RequestBody @Valid Membro dadosMembro){
         try{
-            return ResponseEntity.status(HttpStatus.CREATED).body(this.membroUseCase.cadastrarMembroUseCase(dadosMembro));
+            this.membroUseCase.cadastrarMembroUseCase(dadosMembro);
         } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RequestResponse.builder().message(e.getMessage()));
         }
     }
 
@@ -31,26 +32,25 @@ public class MembroController {
         try{
             return ResponseEntity.status(HttpStatus.OK).body(this.membroUseCase.listaMembrosUseCase());
         } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RequestResponse.builder().message(e.getMessage()));
         }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity membroPorId(@PathVariable("id") String idMembro){
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(this.membroUseCase.membroPorIdUseCase(idMembro));
+            this.membroUseCase.membroPorIdUseCase(idMembro);
         } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RequestResponse.builder().message(e.getMessage()));
         }
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity deletarMembro(@PathVariable("id") String idMembro){
         try{
-            this.membroUseCase.deletarMembro(idMembro);
-            return ResponseEntity.noContent().build();
+            return this.membroUseCase.deletarMembro(idMembro);
         } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RequestResponse.builder().message(e.getMessage()));
         }
     }
 }

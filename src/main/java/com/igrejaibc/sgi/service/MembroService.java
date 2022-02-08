@@ -1,6 +1,6 @@
 package com.igrejaibc.sgi.service;
 
-import com.igrejaibc.sgi.model.Membro;
+import com.igrejaibc.sgi.model.membro.Membro;
 import com.igrejaibc.sgi.repository.MembroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

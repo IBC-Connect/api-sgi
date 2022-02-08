@@ -1,9 +1,13 @@
 package com.igrejaibc.sgi.usecase;
 
-import com.igrejaibc.sgi.model.Membro;
+import com.igrejaibc.sgi.model.membro.Membro;
+import com.igrejaibc.sgi.response.RequestResponse;
 import com.igrejaibc.sgi.service.MembroService;
+import jdk.nashorn.internal.ir.ReturnNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,12 +23,12 @@ public class MembroUseCase {
     @Autowired
     private MembroService membroService;
 
-    public String cadastrarMembroUseCase(Membro dadosMembro) {
+    public ResponseEntity cadastrarMembroUseCase(Membro dadosMembro) {
         LOGGER.log(Level.INFO, "Cadastrando membro...");
 
         try {
-            Membro membroSalvo = this.membroService.cadastrarMembro(dadosMembro);
-            return "Membro cadastro com sucesso";
+            this.membroService.cadastrarMembro(dadosMembro);
+            return ResponseEntity.status(HttpStatus.OK).body(RequestResponse.builder().message("Membro Cadastrado com Sucesso."));
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Já existe um usuario com o mesmo cpf ou e-mail cadastrado", e);
         } catch (Exception e) {
@@ -32,28 +36,30 @@ public class MembroUseCase {
         }
     }
 
-    public List<Membro> listaMembrosUseCase() {
+    public ResponseEntity listaMembrosUseCase() {
         try {
-            return this.membroService.listarMembros();
+            List<Membro> listaMembros = this.membroService.listarMembros();
+            return listaMembros.isEmpty() ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() : ResponseEntity.status(HttpStatus.OK).body(listaMembros);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
 
-    public Membro membroPorIdUseCase(String idMembro) {
+    public ResponseEntity membroPorIdUseCase(String idMembro) {
         try {
             Long id = Long.parseLong(idMembro);
             Optional<Membro> membroOpcional = this.membroService.membroPorId(id);
-            return membroOpcional.isPresent() ? membroOpcional.get() : Membro.builder().build();
+            return membroOpcional.isPresent() ? ResponseEntity.status(HttpStatus.OK).body(membroOpcional.get()) : ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
 
-    public void deletarMembro(String idMembro) {
+    public ResponseEntity deletarMembro(String idMembro) {
         try {
             Long id = Long.parseLong(idMembro);
             this.membroService.deletarMembro(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
