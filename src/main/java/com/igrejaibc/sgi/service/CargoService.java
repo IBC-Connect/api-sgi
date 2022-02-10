@@ -22,7 +22,7 @@ public class CargoService {
         return this.cargoRepository.findAll();
     }
 
-    public Optional<Cargo> CargoPorId(Long idCargo){
+    public Optional<Cargo> cargoPorId(Long idCargo){
         return this.cargoRepository.findById(idCargo);
     }
 

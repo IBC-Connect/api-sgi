@@ -1,9 +1,9 @@
 package com.igrejaibc.sgi.model.evento;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.igrejaibc.sgi.model.membro.Endereco;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +11,8 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder
 @Entity
 public class Evento {
@@ -23,6 +25,7 @@ public class Evento {
     private String nome;
 
     @NotNull
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate data;
 
     @NotNull

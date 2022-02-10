@@ -22,7 +22,7 @@ public class AssistidoService {
         return this.assistidoRepository.findAll();
     }
 
-    public Optional<Assistido> AssistidoPorId(Long idAssistido){
+    public Optional<Assistido> assistidoPorId(Long idAssistido){
         return this.assistidoRepository.findById(idAssistido);
     }
 

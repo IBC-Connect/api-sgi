@@ -1,8 +1,8 @@
 package com.igrejaibc.sgi.controller;
 
-import com.igrejaibc.sgi.model.projeto.Projeto;
 import com.igrejaibc.sgi.http.Response;
-import com.igrejaibc.sgi.usecase.ProjetoUseCase;
+import com.igrejaibc.sgi.model.cargo.Cargo;
+import com.igrejaibc.sgi.usecase.CargoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,43 +12,43 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/v1/projeto")
-public class ProjetoController {
+@RequestMapping("/v1/cargo")
+public class CargoController {
 
     @Autowired
-    private ProjetoUseCase projetoUseCase;
+    private CargoUseCase cargoUseCase;
 
     @PostMapping
-    public ResponseEntity cadastrarProjeto(@RequestBody @Valid Projeto dadosProjeto) {
+    public ResponseEntity cadastrarCargo(@RequestBody @Valid Cargo dadosCargo) {
         try {
-            return this.projetoUseCase.cadastrarProjetoUseCase(dadosProjeto);
+            return this.cargoUseCase.cadastrarCargoUseCase(dadosCargo);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
     }
 
     @GetMapping
-    public ResponseEntity listarProjetos() {
+    public ResponseEntity listarCargos() {
         try {
-            return this.projetoUseCase.listaProjetosUseCase();
+            return this.cargoUseCase.listaCargosUseCase();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity projetoPorId(@PathVariable("id") String idProjeto) {
+    public ResponseEntity cargoPorId(@PathVariable("id") String idCargo) {
         try {
-            return this.projetoUseCase.projetoPorIdUseCase(idProjeto);
+            return this.cargoUseCase.cargoPorIdUseCase(idCargo);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deletarProjeto(@PathVariable("id") String idProjeto) {
+    public ResponseEntity deletarCargo(@PathVariable("id") String idCargo) {
         try {
-            this.projetoUseCase.deletarProjeto(idProjeto);
+            this.cargoUseCase.deletarCargo(idCargo);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());

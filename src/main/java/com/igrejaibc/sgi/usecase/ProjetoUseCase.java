@@ -1,7 +1,7 @@
 package com.igrejaibc.sgi.usecase;
 
 import com.igrejaibc.sgi.model.projeto.Projeto;
-import com.igrejaibc.sgi.response.RequestResponse;
+import com.igrejaibc.sgi.http.Response;
 import com.igrejaibc.sgi.service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -26,8 +26,8 @@ public class ProjetoUseCase {
         LOGGER.log(Level.INFO, "Cadastrando Projeto...");
 
         try {
-            Projeto projetoSalvo = this.projetoService.cadastrarProjeto(dadosProjeto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(RequestResponse.builder().message("Projeto Cadastrado com sucesso").build());
+            this.projetoService.cadastrarProjeto(dadosProjeto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(Response.builder().message("Projeto Cadastrado com sucesso").build());
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Já existe um usuario com o mesmo cpf ou e-mail cadastrado", e);
         } catch (Exception e) {

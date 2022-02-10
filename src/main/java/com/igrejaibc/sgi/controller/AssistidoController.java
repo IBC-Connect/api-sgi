@@ -1,8 +1,8 @@
 package com.igrejaibc.sgi.controller;
 
-import com.igrejaibc.sgi.model.projeto.Projeto;
 import com.igrejaibc.sgi.http.Response;
-import com.igrejaibc.sgi.usecase.ProjetoUseCase;
+import com.igrejaibc.sgi.model.assistido.Assistido;
+import com.igrejaibc.sgi.usecase.AssistidoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,43 +12,43 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/v1/projeto")
-public class ProjetoController {
+@RequestMapping("/v1/assistido")
+public class AssistidoController {
 
     @Autowired
-    private ProjetoUseCase projetoUseCase;
+    private AssistidoUseCase assistidoUseCase;
 
     @PostMapping
-    public ResponseEntity cadastrarProjeto(@RequestBody @Valid Projeto dadosProjeto) {
+    public ResponseEntity cadastrarAssistido(@RequestBody @Valid Assistido dadosAssistido) {
         try {
-            return this.projetoUseCase.cadastrarProjetoUseCase(dadosProjeto);
+            return this.assistidoUseCase.cadastrarAssistidoUseCase(dadosAssistido);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
     }
 
     @GetMapping
-    public ResponseEntity listarProjetos() {
+    public ResponseEntity listarAssistidos() {
         try {
-            return this.projetoUseCase.listaProjetosUseCase();
+            return this.assistidoUseCase.listaAssistidosUseCase();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity projetoPorId(@PathVariable("id") String idProjeto) {
+    public ResponseEntity assistidoPorId(@PathVariable("id") String idAssistido) {
         try {
-            return this.projetoUseCase.projetoPorIdUseCase(idProjeto);
+            return this.assistidoUseCase.assistidoPorIdUseCase(idAssistido);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deletarProjeto(@PathVariable("id") String idProjeto) {
+    public ResponseEntity deletarAssistido(@PathVariable("id") String idAssistido) {
         try {
-            this.projetoUseCase.deletarProjeto(idProjeto);
+            this.assistidoUseCase.deletarAssistido(idAssistido);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());

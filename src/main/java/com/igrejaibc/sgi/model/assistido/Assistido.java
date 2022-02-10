@@ -2,15 +2,15 @@ package com.igrejaibc.sgi.model.assistido;
 
 import com.igrejaibc.sgi.model.membro.Endereco;
 import com.igrejaibc.sgi.model.membro.InformacoesPessoais;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder
 @Entity
 public class Assistido {

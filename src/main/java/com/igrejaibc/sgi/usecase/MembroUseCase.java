@@ -1,9 +1,8 @@
 package com.igrejaibc.sgi.usecase;
 
 import com.igrejaibc.sgi.model.membro.Membro;
-import com.igrejaibc.sgi.response.RequestResponse;
+import com.igrejaibc.sgi.http.Response;
 import com.igrejaibc.sgi.service.MembroService;
-import jdk.nashorn.internal.ir.ReturnNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,7 @@ public class MembroUseCase {
 
         try {
             this.membroService.cadastrarMembro(dadosMembro);
-            return ResponseEntity.status(HttpStatus.OK).body(RequestResponse.builder().message("Membro Cadastrado com Sucesso."));
+            return ResponseEntity.status(HttpStatus.OK).body(Response.builder().message("Membro Cadastrado com Sucesso.").build());
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Já existe um usuario com o mesmo cpf ou e-mail cadastrado", e);
         } catch (Exception e) {
