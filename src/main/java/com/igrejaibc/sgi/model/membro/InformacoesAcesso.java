@@ -17,9 +17,9 @@ public class InformacoesAcesso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    private Long id;
 
-    public String perfilAcesso;
-    public String login;
-    public String senha;
+    private String perfilAcesso;
+    private String login;
+    private String senha;
 }

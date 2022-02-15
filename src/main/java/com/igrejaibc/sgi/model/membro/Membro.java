@@ -16,18 +16,18 @@ public class Membro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @NotNull
-    @OneToOne(cascade=CascadeType.PERSIST)
-    public InformacoesPessoais infoPessoais;
+    @OneToOne(cascade=CascadeType.PERSIST, orphanRemoval = true)
+    private InformacoesPessoais infoPessoais;
 
     @NotNull
-    @OneToOne(cascade=CascadeType.PERSIST)
-    public InformacoesAcesso infoAcessos;
+    @OneToOne(cascade=CascadeType.PERSIST, orphanRemoval = true)
+    private InformacoesAcesso infoAcessos;
 
     @Valid
-    @OneToOne(cascade=CascadeType.PERSIST)
-    public Endereco endereco;
+    @OneToOne(cascade=CascadeType.PERSIST, orphanRemoval = true)
+    private Endereco endereco;
 
 }

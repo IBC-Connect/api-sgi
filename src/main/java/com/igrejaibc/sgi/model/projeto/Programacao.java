@@ -1,6 +1,5 @@
 package com.igrejaibc.sgi.model.projeto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 

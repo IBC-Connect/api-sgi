@@ -1,7 +1,7 @@
 package com.igrejaibc.sgi.controller;
 
-import com.igrejaibc.sgi.model.projeto.Projeto;
 import com.igrejaibc.sgi.http.Response;
+import com.igrejaibc.sgi.model.projeto.Projeto;
 import com.igrejaibc.sgi.usecase.ProjetoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

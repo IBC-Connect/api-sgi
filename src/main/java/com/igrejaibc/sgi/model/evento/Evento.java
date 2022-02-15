@@ -1,7 +1,6 @@
 package com.igrejaibc.sgi.model.evento;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.igrejaibc.sgi.model.membro.Endereco;
 import lombok.*;
 
@@ -35,7 +34,7 @@ public class Evento {
     private String horarioFinal;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Endereco endereco;
 
 }

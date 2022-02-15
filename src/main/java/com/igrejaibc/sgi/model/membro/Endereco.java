@@ -1,6 +1,5 @@
 package com.igrejaibc.sgi.model.membro;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,26 +18,26 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    private Long id;
 
     @NotNull
-    public String cep;
+    private String cep;
 
     @NotNull
-    public String logradouro;
+    private String logradouro;
 
     @NotNull
-    public Integer numero;
+    private Integer numero;
 
     @NotNull
-    public String complemento;
+    private String complemento;
 
     @NotNull
-    public String bairro;
+    private String bairro;
 
     @NotNull
-    public String cidade;
+    private String cidade;
 
     @NotNull
-    public String estado;
+    private String estado;
 }

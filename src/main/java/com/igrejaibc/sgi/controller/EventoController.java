@@ -5,7 +5,6 @@ import com.igrejaibc.sgi.model.evento.Evento;
 import com.igrejaibc.sgi.usecase.EventoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +16,12 @@ import javax.validation.Valid;
 public class EventoController {
 
     @Autowired
-    private EventoUseCase EventoUseCase;
+    private EventoUseCase eventoUseCase;
 
     @PostMapping
     public ResponseEntity cadastrarEvento(@RequestBody @Valid Evento dadosEvento) {
         try {
-            return this.EventoUseCase.cadastrarEventoUseCase(dadosEvento);
+            return this.eventoUseCase.cadastrarEventoUseCase(dadosEvento);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
@@ -31,7 +30,7 @@ public class EventoController {
     @GetMapping
     public ResponseEntity listarEventos() {
         try {
-            return this.EventoUseCase.listaEventosUseCase();
+            return this.eventoUseCase.listaEventosUseCase();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
@@ -40,7 +39,7 @@ public class EventoController {
     @GetMapping("/{id}")
     public ResponseEntity eventoPorId(@PathVariable("id") String idEvento) {
         try {
-            return this.EventoUseCase.eventoPorIdUseCase(idEvento);
+            return this.eventoUseCase.eventoPorIdUseCase(idEvento);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());
         }
@@ -49,7 +48,7 @@ public class EventoController {
     @DeleteMapping("{id}")
     public ResponseEntity deletarEvento(@PathVariable("id") String idEvento) {
         try {
-            this.EventoUseCase.deletarEvento(idEvento);
+            this.eventoUseCase.deletarEvento(idEvento);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Response.builder().message(e.getMessage()).build());

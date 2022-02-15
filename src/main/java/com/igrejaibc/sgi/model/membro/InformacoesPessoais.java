@@ -1,8 +1,6 @@
 package com.igrejaibc.sgi.model.membro;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -19,36 +17,36 @@ public class InformacoesPessoais {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    private Long id;
 
-    public String nomeCompleto;
+    private String nomeCompleto;
 
     @JsonFormat(pattern="dd/MM/yyyy")
-    public LocalDate dataNascimento;
+    private LocalDate dataNascimento;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(unique=true)
-    public String cpf;
+    private String cpf;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String rg;
+    private String rg;
 
-    public String telefone;
-    public String whatsapp;
+    private String telefone;
+    private String whatsapp;
 
     @Column(unique=true)
-    public String email;
+    private String email;
 
-    public String estadoCivil;
-    public String escolaridade;
-    public boolean trabalhandoAtualmente;
-    public String profissao;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonFormat(pattern="dd/MM/yyyy")
-    public LocalDate dataBastismo;
+    private String estadoCivil;
+    private String escolaridade;
+    private boolean trabalhandoAtualmente;
+    private String profissao;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern="dd/MM/yyyy")
-    public LocalDate membroDesde;
+    private LocalDate dataBastismo;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private LocalDate membroDesde;
 }

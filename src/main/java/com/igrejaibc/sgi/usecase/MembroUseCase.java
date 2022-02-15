@@ -1,7 +1,7 @@
 package com.igrejaibc.sgi.usecase;
 
-import com.igrejaibc.sgi.model.membro.Membro;
 import com.igrejaibc.sgi.http.Response;
+import com.igrejaibc.sgi.model.membro.Membro;
 import com.igrejaibc.sgi.service.MembroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
