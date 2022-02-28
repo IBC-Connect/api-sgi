@@ -6,7 +6,7 @@ services:
     build:
       context: .
     ports:
-      - "8080:1250"
+      - "172.18.0.3:8080:1250"
     container_name: app
     depends_on:
       - db
