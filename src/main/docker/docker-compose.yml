@@ -6,7 +6,6 @@ services:
     build:
       context: .
     restart: always
-    network_mode: "host"
     container_name: app
     depends_on:
       - db
@@ -19,7 +18,6 @@ services:
   db:
     image: 'postgres:13.1-alpine'
     restart: always
-    network_mode: "host"
     container_name: db
     environment:
       - POSTGRES_USER=compose-postgres
