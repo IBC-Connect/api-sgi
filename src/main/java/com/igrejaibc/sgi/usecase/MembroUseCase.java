@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.TransactionSystemException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,8 @@ public class MembroUseCase {
             return ResponseEntity.status(HttpStatus.OK).body(Response.builder().message("Membro Cadastrado com Sucesso.").build());
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Já existe um usuario com o mesmo cpf ou e-mail cadastrado", e);
+        } catch (TransactionSystemException e) {
+            throw new RuntimeException("Erro durante a criação do membro, existe um campo inválido: ".concat(e.getMessage()), e);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }

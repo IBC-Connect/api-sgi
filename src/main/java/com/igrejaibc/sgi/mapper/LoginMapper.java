@@ -8,6 +8,5 @@ import lombok.*;
 @Setter
 @Builder
 public class LoginMapper {
-    private boolean loginRealizado;
     private String message;
 }

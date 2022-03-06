@@ -19,34 +19,45 @@ public class InformacoesPessoais {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NonNull
     private String nomeCompleto;
 
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @Column(unique=true)
+    @Column(unique = true)
     private String cpf;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String rg;
 
+    @NonNull
     private String telefone;
+
+    @NonNull
     private String whatsapp;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
 
+    @NonNull
     private String estadoCivil;
+
+    @NonNull
     private String escolaridade;
+
+    @NonNull
     private boolean trabalhandoAtualmente;
+
+    @NonNull
     private String profissao;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataBastismo;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate membroDesde;
 }

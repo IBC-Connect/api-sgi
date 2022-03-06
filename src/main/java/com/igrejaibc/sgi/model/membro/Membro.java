@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class Membro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -24,7 +24,7 @@ public class Membro {
 
     @NotNull
     @OneToOne(cascade=CascadeType.PERSIST, orphanRemoval = true)
-    private InformacoesAcesso infoAcessos;
+    private Usuario usuario;
 
     @Valid
     @OneToOne(cascade=CascadeType.PERSIST, orphanRemoval = true)
